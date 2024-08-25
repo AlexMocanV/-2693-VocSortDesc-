@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+std::vector<std::pair<int,std::string>>v;
+bool cmp(std::pair<int,std::string>a,std::pair<int,std::string>b)
+{
+    if(a.first>b.first)
+    {
+        return false;
+    }
+    else if(b.first>a.first)
+    {
+        return true;
+    }
+    else
+    {
+        if(a.second.length()>b.second.length())
+        {
+            return false;
+        }
+        else if(b.second.length()>a.second.length())
+        {
+            return true;
+        }
+        else
+        {
+            return a.second>b.second;
+        }
+    }
+}
+int main()
+{    
+    std::string c;
+    while(std::cin>>c)
+    {
+        std::pair<int,std::string>nu;
+        nu.first=0;
+        nu.second=c;
+        for(int i=0;i<c.size();i++)
+        {
+            if(c[i]=='a'||c[i]=='o'||c[i]=='u'||c[i]=='e'||c[i]=='i'||c[i]=='A'||c[i]=='O'||c[i]=='U'||c[i]=='E'||c[i]=='I')
+            {
+                nu.first+=1;
+            }
+        }
+        v.push_back(nu);
+    }
+    std::sort(v.begin(),v.end(),cmp);
+    for(int i=v.size()-1;i>-1;i--)
+    {
+        std::cout<<v[i].second<<'\n';
+    }
+    return 0;
+}
